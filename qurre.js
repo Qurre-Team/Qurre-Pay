@@ -15,6 +15,15 @@ module.exports = class QurreAPI {
         this.public = public_key;
     }
     /**
+     * Get the IP-addresses of the service
+     */
+    async GetServiceIps(){
+        const _data = await axios.post(qurre_link+'/api/ip', {private: this.private}).catch((e) => {
+            throw console.error(`An error occurred while getting the IP-addresses of the service - ${e}`);
+        });
+        return _data.data;
+    }
+    /**
      * Get information about your store
      */
     async GetShopInfo(){
