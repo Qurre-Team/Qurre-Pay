@@ -34,7 +34,7 @@ module.exports = class QurreAPI {
         return _data.data;
     }
     /**
-     * Get information about payment by id
+     * Create payment
      * @param {number} sum     Sum of payment
      * @param {string} desc     Payment Description
      */
