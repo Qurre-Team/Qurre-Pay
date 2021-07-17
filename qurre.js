@@ -18,7 +18,7 @@ module.exports = class QurreAPI {
      * Get the IP-addresses of the service
      */
     async GetServiceIps(){
-        const _data = await axios.post(qurre_link+'/api/ip', {private: this.private}).catch((e) => {
+        const _data = await axios.post(qurre_link+'/api/ip').catch((e) => {
             throw console.error(`An error occurred while getting the IP-addresses of the service - ${e}`);
         });
         return _data.data;

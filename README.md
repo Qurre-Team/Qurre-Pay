@@ -5,7 +5,7 @@
 **Create a Qurre-Pay API class**
 
 ```js
-const QurreAPI = require('Qurre-Pay');
+const QurreAPI = require('qurre-pay');
 const Qurre = new QurreAPI(private_key, public_key);
 ```
 **Get information about your store**
@@ -22,4 +22,20 @@ const Payment = await Qurre.GetPaymentInfo('3gui7GYus798');
 
 ```js
 const Payment = await Qurre.CreatePayment(100, 'Test payment');
+```
+**Get the IP-addresses of the service**
+
+```js
+const Ips = await Qurre.GetServiceIps();
+```
+**Payment processing example**
+
+```js
+//req - the variable passed by express
+const ip = (req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for'] || req.socket.remoteAddress)?.replace('::ffff:', '');
+const Ips = await Qurre.GetServiceIps();
+if(!Ips.includes(ip)) return;
+const Pay = await Qurre.GetPaymentInfo(req.body.payment);
+if(!Pay.paid) return;
+// your code
 ```
