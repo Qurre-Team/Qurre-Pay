@@ -28,6 +28,11 @@ const Payment = await Qurre.CreatePayment(100, 'Test payment');
 ```js
 const Ips = await Qurre.GetServiceIps();
 ```
+**Cancel payment**
+
+```js
+const Payment = await Qurre.CancelPayment('3gui7GYus798');
+```
 **Payment processing example**
 
 ```js

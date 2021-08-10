@@ -19,7 +19,8 @@ module.exports = class QurreAPI {
      */
     async GetServiceIps(){
         const _data = await axios.post(qurre_link+'/api/ip').catch((e) => {
-            throw console.error(`An error occurred while getting the IP-addresses of the service - ${e}`);
+            console.error(`An error occurred while getting the IP-addresses of the service - ${e}`);
+            return null;
         });
         return _data.data;
     }
@@ -28,7 +29,8 @@ module.exports = class QurreAPI {
      */
     async GetShopInfo(){
         const _data = await axios.post(qurre_link+'/api/shop', {private: this.private}).catch((e) => {
-            throw console.error(`An error occurred while retrieving store information - ${e}`);
+            console.error(`An error occurred while retrieving store information - ${e}`);
+            return null;
         });
         return _data.data;
     }
@@ -38,7 +40,19 @@ module.exports = class QurreAPI {
      */
     async GetPaymentInfo(payment){
         const _data = await axios.post(qurre_link+'/api/payments?type=info', {private: this.private, payment}).catch((e) => {
-            throw console.error(`An error occurred while retrieving payment information - ${e}`);
+            console.error(`An error occurred while retrieving payment information - ${e}`);
+            return null;
+        });
+        return _data.data;
+    }
+    /**
+     * Cancel payment
+     * @param {string} payment     Payment ID
+     */
+    async CancelPayment(payment){
+        const _data = await axios.post(qurre_link+'/api/payments?type=cancel', {private: this.private, payment}).catch((e) => {
+            console.error(`An error occurred while canceling the payment - ${e}`);
+            return null;
         });
         return _data.data;
     }
