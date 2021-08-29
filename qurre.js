@@ -20,8 +20,8 @@ module.exports = class QurreAPI {
     async GetServiceIps(){
         const _data = await axios.post(qurre_link+'/api/ip').catch((e) => {
             console.error(`An error occurred while getting the IP-addresses of the service - ${e}`);
-            return null;
         });
+        if(_data == null) return null;
         return _data.data;
     }
     /**
@@ -30,8 +30,8 @@ module.exports = class QurreAPI {
     async GetShopInfo(){
         const _data = await axios.post(qurre_link+'/api/shop', {private: this.private}).catch((e) => {
             console.error(`An error occurred while retrieving store information - ${e}`);
-            return null;
         });
+        if(_data == null) return null;
         return _data.data;
     }
     /**
@@ -41,8 +41,8 @@ module.exports = class QurreAPI {
     async GetPaymentInfo(payment){
         const _data = await axios.post(qurre_link+'/api/payments?type=info', {private: this.private, payment}).catch((e) => {
             console.error(`An error occurred while retrieving payment information - ${e}`);
-            return null;
         });
+        if(_data == null) return null;
         return _data.data;
     }
     /**
@@ -52,8 +52,8 @@ module.exports = class QurreAPI {
     async CancelPayment(payment){
         const _data = await axios.post(qurre_link+'/api/payments?type=cancel', {private: this.private, payment}).catch((e) => {
             console.error(`An error occurred while canceling the payment - ${e}`);
-            return null;
         });
+        if(_data == null) return null;
         return _data.data;
     }
     /**
@@ -63,8 +63,9 @@ module.exports = class QurreAPI {
      */
     async CreatePayment(sum, desc = ''){
         const _data = await axios.post(qurre_link+'/api/payments?type=create', {public: this.public, sum, desc}).catch((e) => {
-            throw console.error(`An error occurred while creating a payment - ${e}`);
+            console.error(`An error occurred while creating a payment - ${e}`);
         });
+        if(_data == null) return null;
         return _data.data;
     }
 }
