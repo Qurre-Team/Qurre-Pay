@@ -1,5 +1,5 @@
 const axios = require('axios');
-const qurre_link = 'https://qurre.store';
+const qurre_link = 'https://pay.scpsl.store'; //qurre.store
 /**
  * @class
  */
